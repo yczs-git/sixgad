@@ -1,2 +1,5 @@
-/.idea/
-jxc.iml
+target/
+.idea/
+*.iml
+mvnw*
+webapp/
