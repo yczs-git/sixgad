@@ -20,6 +20,12 @@ public class customerReturnListGoodsController {
     @Autowired
     CustomerReturnListGoodsService customerReturnListGoodsService;
 
+    @PostMapping("count")
+    @RequiresPermissions(value = {"客户退货查询","客户退货","退货出库"})
+    public String queryCustomerReturnListGoodsJson(String sTime, String eTime, Integer goodsTypeId, String codeOrName){
+        return customerReturnListGoodsService.queryCustomerReturnListGoodsJson(sTime, eTime, goodsTypeId, codeOrName);
+    }
+
     @PostMapping("delete")
     @RequiresPermissions(value = {"客户退货查询","客户退货","退货出库"})
     public ServiceVO deleteBycustomerReturnListId (Integer customerReturnListId){
