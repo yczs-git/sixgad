@@ -23,6 +23,7 @@
         <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR" />
     </resultMap>
 
+
     <select id="getGoodsList" resultMap="BaseResultMap">
         SELECT
             t_goods.goods_id,
@@ -364,5 +365,50 @@
         WHERE
         t_goods.inventory_quantity &lt; t_goods.min_num
     </select>
+
+    <resultMap id="BaseResultMap1" type="com.atguigu.jxc.entity.PurchaseGoodsCountVo">
+       <result column="purchase_number" property="number"></result>
+        <result column="purchase_date" property="date"></result>
+        <result column="supplier_name" property="supplierName"></result>
+        <result column="goods_code" property="code"></result>
+        <result column="goods_name" property="name"></result>
+        <result column="goods_model" property="model"></result>
+        <result column="goods_type_name" property="goodsType"></result>
+        <result column="goods_unit" property="unit"></result>
+        <result column="price" property="price"></result>
+        <result column="goods_num" property="num"></result>
+        <result column="total" property="total"></result>
+    </resultMap>
+    <select id="PurchaseGoodsCountList"  resultMap="BaseResultMap1">
+        select
+        t_purchase_list.purchase_number,
+        t_purchase_list.purchase_date,
+        t_supplier.supplier_name,
+        t_purchase_list_goods.goods_code,
+        t_purchase_list_goods.goods_name,
+        t_purchase_list_goods.goods_model,
+        t_goods_type.goods_type_name,
+        t_purchase_list_goods.goods_unit,
+        t_purchase_list_goods.price,
+        t_purchase_list_goods.goods_num,
+        t_purchase_list_goods.total
+        FROM
+          t_purchase_list
+        LEFT JOIN t_supplier
+            ON t_purchase_list.supplier_id = t_supplier.supplier_id
+        LEFT JOIN t_purchase_list_goods
+            ON t_purchase_list.`purchase_list_id` = t_purchase_list_goods.purchase_list_id
+        LEFT JOIN t_goods_type
+            ON t_goods_type.goods_type_id = t_purchase_list_goods.goods_type_id
+        <where>
+            <if test="goodsTypeId != null and goodsTypeId !=''">
+                AND
+                (t_goods_type.goods_type_id = #{goodsTypeId} OR
+                t_purchase_list_goods.goods_code = #{codeOrName}
+                )
+            </if>
+        </where>
+    </select>
+
 
 </mapper>

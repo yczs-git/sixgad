@@ -1,6 +1,7 @@
 package com.atguigu.jxc.dao;
 
 import com.atguigu.jxc.entity.Goods;
+import com.atguigu.jxc.entity.PurchaseGoodsCountVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -38,4 +39,11 @@ public interface GoodsDao {
 
     // 查询当前库存小于最小库存的商品
     List<Goods> getGoodsAlarm();
+
+    //商品采购统计信息
+    List<PurchaseGoodsCountVo> PurchaseGoodsCountList(
+            @Param("sTime") String sTime,
+            @Param("eTime") String eTime,
+            @Param("goodsTypeId")Integer goodsTypeId,
+            @Param("codeOrName")String codeOrName);
 }
