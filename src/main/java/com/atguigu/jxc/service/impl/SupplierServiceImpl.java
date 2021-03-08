@@ -78,4 +78,11 @@ public class SupplierServiceImpl implements SupplierService {
         }
         return new ServiceVO<>(SuccessCode.SUCCESS_CODE, SuccessCode.SUCCESS_MESS);
     }
+
+    //供应商下拉列表查询
+    @Override
+    public List<Supplier> querySupplierList(String supplierName) {
+        return this.supplierDao.querySupplierList(supplierName);
+    }
+
 }

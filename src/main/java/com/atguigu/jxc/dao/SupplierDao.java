@@ -12,6 +12,9 @@ public interface SupplierDao {
 
     List<Supplier> getSupplierList(@Param("offSet") Integer offSet, @Param("pageRow") Integer pageRow, @Param("supplierName") String supplierName);
 
+    //供应商下拉列表查询
+    List<Supplier> querySupplierList(@Param("supplierName") String supplierName);
+
     Integer getSupplierCount(@Param("supplierName") String supplierName);
 
     Integer saveSupplier(Supplier supplier);

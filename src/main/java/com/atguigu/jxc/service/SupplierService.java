@@ -17,4 +17,7 @@ public interface SupplierService {
     ServiceVO save(Supplier supplier);
 
     ServiceVO delete(String ids);
+
+    //供应商下拉列表查询
+    List<Supplier> querySupplierList(String supplierName);
 }

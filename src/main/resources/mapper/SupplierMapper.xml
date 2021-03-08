@@ -32,6 +32,23 @@
         LIMIT #{offSet}, #{pageRow}
     </select>
 
+    <select id="querySupplierList" resultMap="BaseResultMap">
+        SELECT
+        t_supplier.supplier_id,
+        t_supplier.supplier_name,
+        t_supplier.contacts,
+        t_supplier.phone_number,
+        t_supplier.address,
+        t_supplier.remarks
+        FROM
+        t_supplier
+        <where>
+            <if test="supplierName != null and supplierName != ''">
+                t_supplier.supplier_name LIKE CONCAT('%', #{supplierName} ,'%')
+            </if>
+        </where>
+    </select>
+
     <select id="getSupplierCount" resultType="java.lang.Integer">
         SELECT
           COUNT(*)

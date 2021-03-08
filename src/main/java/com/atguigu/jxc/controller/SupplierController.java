@@ -6,6 +6,9 @@ import com.atguigu.jxc.service.SupplierService;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +24,18 @@ public class SupplierController {
 
     @Autowired
     private SupplierService supplierService;
+
+    /**
+     * 供应商下拉列表查询
+     */
+    @PostMapping("/getComboboxList")
+    public List<Supplier> querySupplierList(String supplierName){
+        List<Supplier> suppliers = this.supplierService.querySupplierList(supplierName);
+        if (CollectionUtils.isEmpty(suppliers)){
+            throw new RuntimeException("您查找的供应商不存在");
+        }
+        return suppliers;
+    }
 
     /**
      * 分页查询供应商
