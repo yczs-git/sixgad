@@ -16,14 +16,14 @@
 
     <select id="getCustomerList" resultMap="BaseResultMap">
         SELECT
-            t_customer.customer_id,
-            t_customer.customer_name,
-            t_customer.contacts,
-            t_customer.phone_number,
-            t_customer.address,
-            t_customer.remarks
+        t_customer.customer_id,
+        t_customer.customer_name,
+        t_customer.contacts,
+        t_customer.phone_number,
+        t_customer.address,
+        t_customer.remarks
         FROM
-            t_customer
+        t_customer
         <where>
             <if test="customerName != null and customerName != ''">
                 t_customer.customer_name LIKE CONCAT('%', #{customerName} ,'%')
@@ -34,9 +34,9 @@
 
     <select id="getCustomerCount" resultType="java.lang.Integer">
         SELECT
-            COUNT(*)
+        COUNT(*)
         FROM
-            t_customer
+        t_customer
         <where>
             <if test="customerName != null and customerName != ''">
                 t_customer.customer_name LIKE CONCAT('%', #{customerName} ,'%')
@@ -46,7 +46,7 @@
 
     <insert id="saveCustomer" useGeneratedKeys="true" keyProperty="customerId" parameterType="com.atguigu.jxc.entity.Customer">
         INSERT INTO t_customer
-        (customer_name, contacts, phone_number, address, remarks)
+            (customer_name, contacts, phone_number, address, remarks)
         VALUES (#{customerName}, #{contacts}, #{phoneNumber}, #{address}, #{remarks})
     </insert>
 
@@ -85,10 +85,39 @@
         WHERE
             customer_id = #{customerId}
     </select>
+    <select id="getComboboxList" resultType="com.atguigu.jxc.entity.Customer">
+        select
+            t_customer.customer_id customerId,
+            t_customer.customer_name customerName,
+            t_customer.contacts,
+            t_customer.phone_number phoneNumber,
+            t_customer.address,
+            t_customer.remarks
+        from
+            t_customer
+        where
+                t_customer.`customer_name`
+                like
+                concat('%',#{customerName},'%');
+    </select>
+    <select id="getAllList" resultType="com.atguigu.jxc.entity.Customer">
+        select
+            t_customer.customer_id customerId,
+            t_customer.customer_name customerName,
+            t_customer.contacts,
+            t_customer.phone_number phoneNumber,
+            t_customer.address,
+            t_customer.remarks
+        from
+            t_customer
+    </select>
+
+
+
 
     <delete id="deleteCustomer" parameterType="java.lang.Integer">
         DELETE FROM
-        t_customer
+            t_customer
         WHERE customer_id = #{customerId}
     </delete>
 

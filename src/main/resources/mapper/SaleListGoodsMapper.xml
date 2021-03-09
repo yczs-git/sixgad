@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.jxc.service.SaleListGoodsDao">
+
+    <select id="querySaleListId" resultType="com.atguigu.jxc.vo.SaleListVo">
+        SELECT t1.customer_name customerName,sale_date saleData, sale_number saleNumber,
+               `state` ,user_id userId,total,t2.sale_list_id saleListId
+        FROM t_customer t1
+                 LEFT JOIN t_sale_list t2 ON t1.customer_id = t2.customer_id
+                 LEFT JOIN t_sale_list_goods t3 ON t3.sale_list_id = t2.sale_list_id
+        WHERE `state` =  #{state}
+
+    </select>
+
+
+</mapper>
