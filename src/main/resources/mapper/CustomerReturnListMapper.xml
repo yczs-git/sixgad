@@ -23,4 +23,52 @@
 <!--        amount_payable amountPayable,sale_date saleDate,state,remarks,customer_id customerId,user_id userId-->
 <!--        from  t_sale_list where sale_number = #{saleNumber}-->
 <!--    </select>-->
+
+<!--    Integer deleteBycustomerReturnListById(Integer customerReturnListId);-->
+
+    <delete id="deleteBycustomerReturnListById" >
+        DELETE FROM t_customer_return_list
+        WHERE customer_return_list_id = #{customerReturnListId}
+    </delete>
+
+
+    <!--    List<CustomerReturnList> queryCustomerReturnListByCondition(@Param("returnNumber")String returnNumber,@Param("customerId") Integer customerId,@Param("state") Integer state,@Param("sTime") String sTime,@Param("eTime") String eTime);-->
+
+    <resultMap id="queryCustomerReturnListByConditionResultMap" type="com.atguigu.jxc.entity.CustomerReturnList">
+        <result column="customer_return_list_id" property="customerReturnListId"/>
+        <result column="return_number" property="returnNumber"/>
+        <result column="return_date" property="returnDate"/>
+        <result column="amount_paid" property="amountPaid"/>
+        <result column="amount_payable" property="amountPayable"/>
+        <result column="state" property="state"/>
+        <result column="customer_id" property="customerId"/>
+        <result column="user_id" property="userId"/>
+        <result column="remarks" property="remarks"/>
+        <result column="customer_name" property="customerName"/>
+        <result column="contacts" property="trueName"/>
+    </resultMap>
+
+    <select id="queryCustomerReturnListByCondition" resultMap="queryCustomerReturnListByConditionResultMap">
+        SELECT t1.* ,t2.customer_name,t2.contacts
+        FROM t_customer_return_list t1
+        LEFT JOIN t_customer t2 ON t1.customer_id = t2.customer_id
+        <where>
+            <if test="sTime != null and sTime != ''">
+                AND t1.return_date &gt;= #{sTime}
+            </if>
+            <if test="eTime != null and eTime != ''">
+                AND t1.return_date &lt;= #{eTime}
+            </if>
+            <if test="returnNumber != null and returnNumber != ''">
+                AND t1.return_number like #{returnNumber}
+            </if>
+            <if test="customerId != null and customerId != ''">
+                AND t1.customer_id like #{customerId}
+            </if>
+            <if test="state != null and state != ''">
+                AND t1.state like #{state}
+            </if>
+        </where>
+    </select>
+
 </mapper>

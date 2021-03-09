@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.atguigu.jxc.dao.SaleListsDao">
+<mapper namespace="com.atguigu.jxc.dao.SaleListDao">
 
 
     <!--     void saveSaleList(SaleList saleList);-->
@@ -20,4 +20,44 @@
         amount_payable amountPayable,sale_date saleDate,state,remarks,customer_id customerId,user_id userId
         from  t_sale_list where sale_number = #{saleNumber}
     </select>
+
+
+    <select id="list" resultType="com.atguigu.jxc.entity.SaleList">
+        select  a.`user_id` userId,a.`sale_list_id` saleListId,a.`sale_number` saleNumber, a.`amount_paid` amountPaid,a.`amount_payable` amountPayable,a.`sale_date` saleDate,
+        a.`state`,b.`remarks`,a.`customer_id` customerId,c.`customer_name` customerName,b.`true_name` trueName
+        from t_sale_list a
+        left join t_user b
+        on a.`user_id` = b.`user_id`
+        left join t_customer c
+        on c.`customer_id`=a.`customer_id`
+        <where>
+            <if test="saleNumber != null and saleNumber!=''">
+                a.sale_number like concat('%',#{saleNumber},'%')
+            </if>
+            <if test="customerId !=null">
+                AND a.customer_id = #{customerId}
+            </if>
+            <if test="state != null">
+                And a.state = #{state}
+            </if>
+            <if test="sTime != null and sTime !='' || eTime != null and eTime !='' ">
+                AND a.sale_date between #{sTime} and #{eTime}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="getGoodsList" resultType="com.atguigu.jxc.entity.SaleListGoods">
+        select goods_id saleListGoodsId,goods_id goodsId,goods_code goodsCode,goods_name goodsName,
+        goods_model goodsModel,goods_num goodsNum,goods_unit goodsUnit,price,total,
+        goods_type_id goodsTypeId,sale_list_id saleListId
+        from t_sale_list_goods
+        where sale_list_id = #{saleListId}
+    </select>
+
+
+    <update id="delete">
+        delete from t_sale_list where sale_list_id = #{saleListId}
+    </update>
+
 </mapper>

@@ -14,4 +14,10 @@
         #{price},#{total},#{saleListId},#{goodsTypeId})
 
     </insert>
+
+
+    <update id="delete">
+        delete from t_sale_list_goods where sale_list_id = #{saleListId}
+    </update>
+
 </mapper>
