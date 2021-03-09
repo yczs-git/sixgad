@@ -146,6 +146,12 @@
         </set>
         WHERE t_goods.goods_id = #{goodsId}
     </update>
+    <update id="updateGoodsNum">
+        update t_goods set inventory_quantity = inventory_quantity  - #{goodsNum} where goods_id = #{goodsId};
+    </update>
+    <update id="updateGoodsByNum">
+        update t_goods set inventory_quantity = inventory_quantity  + #{goodsNum} where goods_id = #{goodsId};
+    </update>
 
     <delete id="deleteGoods" parameterType="java.lang.Integer">
         DELETE FROM

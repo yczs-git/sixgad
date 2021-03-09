@@ -22,4 +22,7 @@ public interface CustomerDao {
 
     Integer deleteCustomer(Integer customerId);
 
+    List<Customer> queryAllCustomer();
+
+    List<Customer> queryCustomerByName(@Param("customerName")String customerName);
 }

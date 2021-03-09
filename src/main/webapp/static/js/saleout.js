@@ -504,8 +504,10 @@ function updateGoodsData(){
 function saveSaleData(){
 	$('#saleListGoodsStr').val(JSON.stringify($("#dg").datagrid("getData").rows));
 	var saleNumber = $('#saleNumber').text();
+
 	$('#fm').form('submit',{
 		url:'/saleListGoods/save?saleNumber='+saleNumber,
+
 		onSubmit:function(){
 			
 			if($('#dg').datagrid('getRows').length < 1){
@@ -553,6 +555,7 @@ function saveSaleData(){
 			
 			return true;
 		},
+
 		success:function(result){
 			var resultObj = eval('('+result+')');
 			if(resultObj.code === 100){

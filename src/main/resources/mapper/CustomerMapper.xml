@@ -13,6 +13,19 @@
         <result column="address" property="address" jdbcType="VARCHAR" />
         <result column="remarks" property="remarks" jdbcType="VARCHAR" />
     </resultMap>
+<!--    List<Customer> queryAllCustomer();-->
+
+<!--    List<Customer> queryCustomerByName(String customerName);-->
+    <select id="queryAllCustomer" resultType="com.atguigu.jxc.entity.Customer">
+        select customer_id customerId ,customer_name customerName,contacts,phone_number phoneNumber,address,remarks from t_customer
+    </select>
+    <select id="queryCustomerByName" resultType="com.atguigu.jxc.entity.Customer">
+        select
+        customer_id customerId ,customer_name customerName,contacts,phone_number phoneNumber,address,remarks
+        from
+        t_customer
+        where customer_name LIKE CONCAT('%', #{customerName} ,'%')
+    </select>
 
     <select id="getCustomerList" resultMap="BaseResultMap">
         SELECT

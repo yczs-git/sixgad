@@ -1,2 +1,12 @@
-/.idea/
-jxc.iml
+*.class
+*.html
+*.css
+*.js
+*.jpg
+*.png
+*.ico
+*.json
+target/
+.idea/
+*.iml
+mvnw
