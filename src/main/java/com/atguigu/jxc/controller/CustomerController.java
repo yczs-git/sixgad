@@ -6,6 +6,7 @@ import com.atguigu.jxc.service.CustomerService;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+//    @PostMapping("/getComboboxList")
+//    @RequiresPermissions(value = "客户管理")// 有客户管理菜单权限的才给予调用
+//    public List<Customer> list(String q) {
+//        Map<String, Object> map = this.list(1, Integer.MAX_VALUE, q);
+//        List<Customer> rows = (List<Customer>) map.get("rows");
+//        return rows;
+//    }
 
     /**
      * 分页查询客户
