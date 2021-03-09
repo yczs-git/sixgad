@@ -9,6 +9,7 @@ import com.atguigu.jxc.service.SupplierService;
 import com.atguigu.jxc.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -77,5 +78,16 @@ public class SupplierServiceImpl implements SupplierService {
 
         }
         return new ServiceVO<>(SuccessCode.SUCCESS_CODE, SuccessCode.SUCCESS_MESS);
+    }
+
+    @Override
+    public List<Supplier> getComboboxList(String supplierName) {
+        List<Supplier> supplierList = null;
+        if (StringUtils.isEmpty(supplierName)){
+            supplierList = supplierDao.getAllList();
+        }else{
+            supplierList = supplierDao.getComboboxList(supplierName);
+        }
+        return supplierList;
     }
 }

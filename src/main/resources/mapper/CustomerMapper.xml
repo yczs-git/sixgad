@@ -85,6 +85,35 @@
         WHERE
             customer_id = #{customerId}
     </select>
+    <select id="getComboboxList" resultType="com.atguigu.jxc.entity.Customer">
+        select
+            t_customer.customer_id customerId,
+            t_customer.customer_name customerName,
+            t_customer.contacts,
+            t_customer.phone_number phoneNumber,
+            t_customer.address,
+            t_customer.remarks
+        from
+            t_customer
+        where
+            t_customer.`customer_name`
+        like
+            concat('%',#{customerName},'%');
+    </select>
+    <select id="getAllList" resultType="com.atguigu.jxc.entity.Customer">
+        select
+            t_customer.customer_id customerId,
+            t_customer.customer_name customerName,
+            t_customer.contacts,
+            t_customer.phone_number phoneNumber,
+            t_customer.address,
+            t_customer.remarks
+        from
+            t_customer
+    </select>
+
+
+
 
     <delete id="deleteCustomer" parameterType="java.lang.Integer">
         DELETE FROM

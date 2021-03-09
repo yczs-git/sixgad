@@ -9,6 +9,7 @@ import com.atguigu.jxc.service.CustomerService;
 import com.atguigu.jxc.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -75,6 +76,18 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         return new ServiceVO<>(SuccessCode.SUCCESS_CODE, SuccessCode.SUCCESS_MESS);
+    }
+
+    @Override
+    public List<Customer> getComboboxList(String customerName) {
+        List<Customer> customerList = null;
+        if (StringUtils.isEmpty(customerName)){
+            customerList =  customerDao.getAllList();
+        }else{
+            customerList =  customerDao.getComboboxList(customerName);
+        }
+
+        return customerList;
     }
 
 }

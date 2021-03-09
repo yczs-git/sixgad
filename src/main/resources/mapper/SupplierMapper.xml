@@ -84,6 +84,32 @@
             t_supplier
         WHERE supplier_id = #{supplierId}
     </select>
+    <select id="getComboboxList" resultType="com.atguigu.jxc.entity.Supplier">
+        select
+            t_supplier.supplier_id supplierId,
+            t_supplier.supplier_name supplierName,
+            t_supplier.contacts,
+            t_supplier.phone_number phoneNumber,
+            t_supplier.address,
+            t_supplier.remarks
+        from
+            t_supplier
+        where
+            t_supplier.supplier_name
+        like
+            concat('%',#{supplierName},'%');
+    </select>
+    <select id="getAllList" resultType="com.atguigu.jxc.entity.Supplier">
+        select
+            t_supplier.supplier_id supplierId,
+            t_supplier.supplier_name supplierName,
+            t_supplier.contacts,
+            t_supplier.phone_number phoneNumber,
+            t_supplier.address,
+            t_supplier.remarks
+        from
+            t_supplier
+    </select>
 
     <delete id="deleteSupplier" parameterType="java.lang.Integer">
         DELETE FROM

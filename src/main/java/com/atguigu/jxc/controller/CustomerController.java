@@ -3,11 +3,14 @@ package com.atguigu.jxc.controller;
 import com.atguigu.jxc.domain.ServiceVO;
 import com.atguigu.jxc.entity.Customer;
 import com.atguigu.jxc.service.CustomerService;
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.omg.CORBA.CurrentOperations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.MissingRequiredPropertiesException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +25,17 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+
+    /**
+     * 销售出库 客户下拉列表查询
+     * @Param q
+     * @return java.util.List<com.atguigu.jxc.entity.Customer>
+     */
+    @PostMapping("/getComboboxList")
+    public List<Customer> getComboboxList(@RequestParam(value = "q", required=false) String customerName){
+        return customerService.getComboboxList(customerName);
+    }
 
 
     /**

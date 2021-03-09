@@ -22,5 +22,7 @@ public interface SupplierDao {
 
     Integer deleteSupplier(Integer supplierId);
 
+    List<Supplier> getComboboxList(String supplierName);
 
+    List<Supplier> getAllList();
 }
