@@ -38,4 +38,8 @@ public interface GoodsDao {
 
     // 查询当前库存小于最小库存的商品
     List<Goods> getGoodsAlarm();
+
+    void updateGoodsNum(@Param("goodsNum") Integer goodsNum,@Param("goodsId") Integer goodsId);
+
+    void updateGoodsByNum(@Param("goodsId")Integer goodsId, @Param("goodsNum")Integer goodsNum);
 }
