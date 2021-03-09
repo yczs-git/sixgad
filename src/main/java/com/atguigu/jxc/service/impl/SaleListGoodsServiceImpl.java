@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.atguigu.jxc.domain.SaleOrReturnListGoodsVo;
 @Service
 public class SaleListGoodsServiceImpl implements SaleListGoodsService {
+    @Resource
     private SaleListDao saleListDao;
     @Resource
     private SaleListGoodsDao saleListGoodsDao;
