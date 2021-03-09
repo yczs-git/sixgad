@@ -2,6 +2,7 @@ package com.atguigu.jxc.dao;
 
 import com.atguigu.jxc.entity.Supplier;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -21,6 +22,6 @@ public interface SupplierDao {
     Supplier getSupplierById(Integer supplierId);
 
     Integer deleteSupplier(Integer supplierId);
-
-
+/*//  XieHaidong
+    List<Supplier> getSupperlierByName(String q);*/
 }

@@ -85,11 +85,25 @@
         WHERE supplier_id = #{supplierId}
     </select>
 
+<!--    By Xie-Haidong
+    <select id="getSupperlierByName" resultMap="BaseResultMap">
+        SELECT
+            t_supplier.supplier_id,
+            t_supplier.supplier_name,
+            t_supplier.contacts,
+            t_supplier.phone_number,
+            t_supplier.address,
+            t_supplier.remarks
+        FROM
+            t_supplier
+        WHERE supplier_name
+        LIKE  concat('%',#{q},'%');
+    </select>-->
+
     <delete id="deleteSupplier" parameterType="java.lang.Integer">
         DELETE FROM
         t_supplier
         WHERE supplier_id = #{supplierId}
     </delete>
-
 
 </mapper>

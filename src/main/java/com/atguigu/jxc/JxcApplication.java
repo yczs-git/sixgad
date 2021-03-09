@@ -11,5 +11,4 @@ public class JxcApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JxcApplication.class, args);
 	}
-
 }

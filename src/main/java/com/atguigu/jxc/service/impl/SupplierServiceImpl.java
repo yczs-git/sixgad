@@ -10,6 +10,7 @@ import com.atguigu.jxc.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,4 +79,26 @@ public class SupplierServiceImpl implements SupplierService {
         }
         return new ServiceVO<>(SuccessCode.SUCCESS_CODE, SuccessCode.SUCCESS_MESS);
     }
+/*//  Xie-Hdong
+    @Override
+    public List<Supplier> getComboboxList(String q) {
+        List<Supplier> supperlierByName = supplierDao.getSupperlierByName(q);
+        return supperlierByName;
+    }*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,10 +5,11 @@ import com.atguigu.jxc.entity.Supplier;
 import com.atguigu.jxc.service.SupplierService;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,17 @@ public class SupplierController {
 
     @Autowired
     private SupplierService supplierService;
+
+/*    *//**
+     * 模糊查询供应商
+     * By Xie-hd
+     * @param q 输入框的模糊查询字符
+     *//*
+    @RequestMapping("/getComboboxList")
+    public List<Supplier> getComboboxList(@RequestParam("q") String q) {
+        return supplierService.getComboboxList(q);
+    }*/
+
 
     /**
      * 分页查询供应商

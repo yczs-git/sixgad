@@ -17,4 +17,7 @@ public interface SupplierService {
     ServiceVO save(Supplier supplier);
 
     ServiceVO delete(String ids);
+/*    //  By X-hd
+    List<Supplier> getComboboxList(String q);*/
+
 }
