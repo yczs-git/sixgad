@@ -79,12 +79,12 @@ public class SupplierServiceImpl implements SupplierService {
         }
         return new ServiceVO<>(SuccessCode.SUCCESS_CODE, SuccessCode.SUCCESS_MESS);
     }
-/*//  Xie-Hdong
+//  Xie-Hdong
     @Override
     public List<Supplier> getComboboxList(String q) {
         List<Supplier> supperlierByName = supplierDao.getSupperlierByName(q);
         return supperlierByName;
-    }*/
+    }
 }
 
 
