@@ -1,10 +1,19 @@
 package com.atguigu.jxc.service;
 
+import com.atguigu.jxc.entity.SaleList;
 import com.atguigu.jxc.entity.SaleListGoods;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SaleListGoodsService {
-    String querySaleListGoodsString(String sTime, String eTime, Integer goodsTypeId, String codeOrName);
-}
+    List<SaleList> list(String saleNumber, Integer customerId, Integer state, String sTime, String eTime);
+
+    List<SaleListGoods> getGoodsList(Integer saleListId);
+
+    void delete(Integer saleListId);
+
+
+
+
+
+    String querySaleListGoodsString(String sTime, String eTime, Integer goodsTypeId, String codeOrName);}

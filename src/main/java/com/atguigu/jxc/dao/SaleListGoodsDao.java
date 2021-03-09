@@ -12,4 +12,5 @@ public interface SaleListGoodsDao {
             , @Param("codeOrName") String codeOrName);
 
 
+    void delete(@Param("saleListId")Integer saleListId);
 }

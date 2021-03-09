@@ -1,3 +1,10 @@
 /.idea/
 jxc.iml
 /target/
+
+target/
+.idea/
+*.iml
+mvnw*
+webapp/
+*.docx
