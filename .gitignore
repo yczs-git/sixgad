@@ -10,6 +10,7 @@ target/
 *.iml
 mvnw*
 webapp/
+/webapp
 
 # BlueJ files
 *.ctxt
