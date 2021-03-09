@@ -6,8 +6,7 @@ import com.atguigu.jxc.service.CustomerService;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +22,12 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @PostMapping("/getComboboxList")
+    @ResponseBody
+    public List<Customer> getComboboxList(@RequestParam(value = "q",required = false)String customerName){
+        List<Customer> customerList = customerService.getComboboxList(customerName);
+        return customerList;
+    }
 
     /**
      * 分页查询客户

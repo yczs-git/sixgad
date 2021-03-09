@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.jxc.dao.CustomerReturnListDao">
+
+
+<!--    void saveReturnList(CustomerReturnList customerReturnList);-->
+    <insert id="saveReturnList">
+        insert into t_customer_return_list(return_number,return_date,amount_paid,amount_payable,state,customer_id,user_id,remarks)
+        values(#{returnNumber},#{returnDate},#{amountPaid},#{amountPayable},#{state},#{customerId},#{userId},#{remarks})
+    </insert>
+    <select id="queryByReturnNumber" resultType="com.atguigu.jxc.entity.CustomerReturnList">
+        select customer_return_list_id customerReturnListId, return_number returnNumber,return_date returnDate,amount_paid amountPaid,amount_payable amountPayable,state,customer_id customerId,user_id userId,remarks
+        from t_customer_return_list where return_number = #{returnNumber}
+    </select>
+
+
+    <!--    SaleList querySaleListByNumber(String saleNumber);-->
+<!--    <select id="querySaleListByNumber" resultType="com.atguigu.jxc.entity.SaleList">-->
+<!--        select sale_list_id saleListId,sale_number saleNumber,amount_paid amountPaid,-->
+<!--        amount_payable amountPayable,sale_date saleDate,state,remarks,customer_id customerId,user_id userId-->
+<!--        from  t_sale_list where sale_number = #{saleNumber}-->
+<!--    </select>-->
+</mapper>
